@@ -1,0 +1,219 @@
+/* Grundlegende Einstellungen für die gesamte Seite */
+:root {
+    --primary-color: #009999;
+    --text-color: #333333;
+    --light-bg: #f4f7f6;
+    --border-color: #cccccc;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Papieroptik */
+.cv-header, .cv-content {
+    background-color: #ffffff;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* KOPFZEILE (Bild links, Text rechts) */
+/* KOPFZEILE (Text links, Bild rechts) */
+.cv-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 4px solid var(--primary-color);
+    gap: 30px;
+}
+
+.profile-picture {
+    order: 2;
+}
+
+.personal-info {
+    order: 1;
+}
+
+.profile-picture img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.personal-info .name {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.contact-list {
+    list-style-type: none;
+    font-size: 0.95rem;
+}
+
+.contact-list li {
+    margin-bottom: 5px;
+}
+
+.contact-list a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.contact-list a:hover {
+    text-decoration: underline;
+}
+
+/* HAUPTINHALT */
+.cv-content {
+    padding: 40px;
+    border-radius: 0 0 8px 8px;
+    margin-bottom: 40px;
+}
+
+.cv-section {
+    margin-bottom: 40px;
+}
+
+.cv-section h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* TIMELINE LAYOUT (Datum links, Text rechts) */
+.timeline-item {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.timeline-item .date {
+    font-weight: bold;
+    color: #555555;
+    font-size: 0.95rem;
+}
+
+.timeline-item .details h3 {
+    font-size: 1.2rem;
+    color: #222222;
+    margin-bottom: 3px;
+}
+
+.timeline-item .details h4 {
+    font-size: 1rem;
+    font-weight: normal;
+    font-style: italic;
+    color: #666666;
+    margin-bottom: 8px;
+}
+
+.timeline-item .details ul {
+    padding-left: 20px;
+    list-style-type: square;
+}
+
+.timeline-item .details ul li {
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+}
+
+/* SKILLS UND STÄRKEN */
+.skills-container {
+    display: flex;
+    gap: 40px;
+}
+
+.half-width {
+    flex: 1;
+}
+
+.skills-list {
+    list-style-type: none;
+}
+
+.skills-list li {
+    background-color: var(--light-bg);
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    border-left: 3px solid var(--primary-color);
+    font-size: 0.95rem;
+}
+
+/* RESPONSIVE DESIGN (Für Smartphones) */
+@media (max-width: 768px) {
+    .cv-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .timeline-item {
+        grid-template-columns: 1fr; /* Untereinander auf kleinen Bildschirmen */
+        gap: 5px;
+    }
+    
+    .timeline-item .date {
+        margin-bottom: 5px;
+        color: var(--primary-color);
+    }
+
+    .skills-container {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+/* AUF UND ZUKLAPPEN */
+
+/* Überschrift anklickbar */
+.cv-section h2 {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+/* Hover-Effekt */
+.cv-section h2:hover {
+    color: #003a40; 
+}
+
+/* Pfeil auf der rechten Seite */
+.cv-section h2::after {
+    content: '▲';
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    color: var(--primary-color);
+}
+
+/* Wenn die Sektion eingeklappt ist, dreht sich der Pfeil nach unten */
+.cv-section.collapsed h2::after {
+    transform: rotate(180deg);
+}
+
+/* Versteckt alle Inhalte in der Sektion, AUSSER der h2-Überschrift, wenn eingeklappt */
+.cv-section.collapsed > *:not(h2) {
+    display: none;
+}
